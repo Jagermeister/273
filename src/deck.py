@@ -6,7 +6,7 @@ class Deck:
     @staticmethod
     def create(cardCount):
         return 2**cardCount - 1
-    
+
     @staticmethod
     def cardPeek(container, cardCount):
         unsetIndex = random.randrange(cardCount)
