@@ -57,3 +57,189 @@
        30    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\fromnumeric.py:2040(_sum_dispatcher)
        20    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\fromnumeric.py:3149(_mean_dispatcher)
         1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+
+Move hand 1 is_flush, is_straight checkout outside loop
+
+         10053915 function calls in 11.509 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+       10    0.350    0.035   11.508    1.151 main.py:114(simulate_deuce_to_seven)
+   100000    0.766    0.000   10.034    0.000 main.py:71(rank_hands)
+  2959104    6.668    0.000    6.668    0.000 main.py:50(cards_from_hand)
+   200000    0.641    0.000    3.811    0.000 main.py:67(unique_value_count)
+    73301    0.326    0.000    1.599    0.000 main.py:63(is_straight)
+    73301    0.225    0.000    1.466    0.000 main.py:60(is_flush)
+   100000    0.693    0.000    1.080    0.000 C:\github\jagermeister\273\src\deck.py:10(cardPeek)
+  1000000    0.349    0.000    0.495    0.000 main.py:68(<lambda>)
+  2099465    0.306    0.000    0.306    0.000 C:\github\jagermeister\273\src\card.py:28(value)
+   100000    0.091    0.000    0.250    0.000 C:\Users\Jagermeister\AppData\Local\Programs\Python\Python37-32\lib\random.py:174(randrange)
+   366505    0.134    0.000    0.191    0.000 main.py:61(<lambda>)
+   366455    0.135    0.000    0.189    0.000 main.py:87(<lambda>)
+   366455    0.133    0.000    0.186    0.000 main.py:88(<lambda>)
+   366505    0.129    0.000    0.183    0.000 main.py:64(<lambda>)
+   100000    0.108    0.000    0.159    0.000 C:\Users\Jagermeister\AppData\Local\Programs\Python\Python37-32\lib\random.py:224(_randbelow)
+   219883    0.126    0.000    0.126    0.000 {built-in method builtins.sorted}
+   200000    0.062    0.000    0.062    0.000 {built-in method builtins.bin}
+   546602    0.058    0.000    0.058    0.000 {built-in method builtins.len}
+   366505    0.057    0.000    0.057    0.000 C:\github\jagermeister\273\src\card.py:24(color)
+   100000    0.056    0.000    0.056    0.000 {method 'rstrip' of 'str' objects}
+   100050    0.039    0.000    0.039    0.000 C:\github\jagermeister\273\src\card.py:16(add)
+   148673    0.038    0.000    0.038    0.000 {method 'getrandbits' of '_random.Random' objects}
+   100000    0.014    0.000    0.014    0.000 {method 'bit_length' of 'int' objects}
+       20    0.002    0.000    0.002    0.000 {built-in method builtins.print}
+       50    0.000    0.000    0.002    0.000 {built-in method numpy.core._multiarray_umath.implement_array_function}
+       20    0.000    0.000    0.001    0.000 <__array_function__ internals>:2(mean)
+       20    0.000    0.000    0.001    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\fromnumeric.py:3153(mean)
+       20    0.000    0.000    0.001    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\_methods.py:134(_mean)
+       50    0.001    0.000    0.001    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+       30    0.000    0.000    0.001    0.000 <__array_function__ internals>:2(sum)
+       30    0.001    0.000    0.001    0.000 {built-in method builtins.round}
+       30    0.000    0.000    0.001    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\fromnumeric.py:2045(sum)
+       30    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\fromnumeric.py:73(_wrapreduction)
+       20    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\_asarray.py:88(asanyarray)
+       20    0.000    0.000    0.000    0.000 {built-in method numpy.array}
+       60    0.000    0.000    0.000    0.000 main.py:29(cards_value_minimal)
+       20    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\_methods.py:50(_count_reduce_items)
+      100    0.000    0.000    0.000    0.000 C:\Users\Jagermeister\AppData\Local\Programs\Python\Python37-32\lib\types.py:164(__get__)
+       50    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\src\card.py:20(remove)
+       70    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
+       30    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\fromnumeric.py:74(<dictcomp>)
+       30    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
+      100    0.000    0.000    0.000    0.000 C:\Users\Jagermeister\AppData\Local\Programs\Python\Python37-32\lib\enum.py:628(value)
+       50    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\src\card.py:32(to_index)
+       50    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\src\card.py:9(bit_mask)
+       10    0.000    0.000    0.000    0.000 {method 'join' of 'str' objects}
+       20    0.000    0.000    0.000    0.000 {built-in method time.time}
+       20    0.000    0.000    0.000    0.000 {built-in method builtins.hasattr}
+       50    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+       20    0.000    0.000    0.000    0.000 {built-in method builtins.issubclass}
+       30    0.000    0.000    0.000    0.000 {method 'items' of 'dict' objects}
+       30    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\fromnumeric.py:2040(_sum_dispatcher)
+       20    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\fromnumeric.py:3149(_mean_dispatcher)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+
+Inline Card.value
+
+         7940752 function calls in 10.580 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+       10    0.348    0.035   10.580    1.058 main.py:114(simulate_deuce_to_seven)
+   100000    0.741    0.000    9.107    0.000 main.py:71(rank_hands)
+  2953200    6.577    0.000    6.577    0.000 main.py:50(cards_from_hand)
+   200000    0.617    0.000    3.381    0.000 main.py:67(unique_value_count)
+    73055    0.222    0.000    1.458    0.000 main.py:60(is_flush)
+    73055    0.315    0.000    1.445    0.000 main.py:63(is_straight)
+   100000    0.698    0.000    1.082    0.000 C:\github\jagermeister\273\src\deck.py:10(cardPeek)
+   100000    0.090    0.000    0.249    0.000 C:\Users\Jagermeister\AppData\Local\Programs\Python\Python37-32\lib\random.py:174(randrange)
+   365275    0.142    0.000    0.201    0.000 main.py:61(<lambda>)
+   100000    0.107    0.000    0.158    0.000 C:\Users\Jagermeister\AppData\Local\Programs\Python\Python37-32\lib\random.py:224(_randbelow)
+  1000000    0.127    0.000    0.127    0.000 main.py:68(<lambda>)
+   219145    0.123    0.000    0.123    0.000 {built-in method builtins.sorted}
+   200000    0.061    0.000    0.061    0.000 {built-in method builtins.bin}
+   365275    0.059    0.000    0.059    0.000 C:\github\jagermeister\273\src\card.py:24(color)
+   546110    0.057    0.000    0.057    0.000 {built-in method builtins.len}
+   100000    0.056    0.000    0.056    0.000 {method 'rstrip' of 'str' objects}
+   365225    0.051    0.000    0.051    0.000 main.py:87(<lambda>)
+   365225    0.048    0.000    0.048    0.000 main.py:88(<lambda>)
+   365275    0.047    0.000    0.047    0.000 main.py:64(<lambda>)
+   100050    0.039    0.000    0.039    0.000 C:\github\jagermeister\273\src\card.py:16(add)
+   148701    0.037    0.000    0.037    0.000 {method 'getrandbits' of '_random.Random' objects}
+   100000    0.014    0.000    0.014    0.000 {method 'bit_length' of 'int' objects}
+       20    0.002    0.000    0.002    0.000 {built-in method builtins.print}
+       50    0.000    0.000    0.002    0.000 {built-in method numpy.core._multiarray_umath.implement_array_function}
+       20    0.000    0.000    0.001    0.000 <__array_function__ internals>:2(mean)
+       20    0.000    0.000    0.001    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\fromnumeric.py:3153(mean)
+       20    0.000    0.000    0.001    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\_methods.py:134(_mean)
+       50    0.001    0.000    0.001    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+       30    0.000    0.000    0.001    0.000 <__array_function__ internals>:2(sum)
+       30    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\fromnumeric.py:2045(sum)
+       30    0.000    0.000    0.000    0.000 {built-in method builtins.round}
+       30    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\fromnumeric.py:73(_wrapreduction)
+       20    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\_asarray.py:88(asanyarray)
+       60    0.000    0.000    0.000    0.000 main.py:29(cards_value_minimal)
+       20    0.000    0.000    0.000    0.000 {built-in method numpy.array}
+       20    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\_methods.py:50(_count_reduce_items)
+      100    0.000    0.000    0.000    0.000 C:\Users\Jagermeister\AppData\Local\Programs\Python\Python37-32\lib\types.py:164(__get__)
+       50    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\src\card.py:20(remove)
+       30    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\fromnumeric.py:74(<dictcomp>)
+       70    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
+       30    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
+       50    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\src\card.py:9(bit_mask)
+       50    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\src\card.py:32(to_index)
+      100    0.000    0.000    0.000    0.000 C:\Users\Jagermeister\AppData\Local\Programs\Python\Python37-32\lib\enum.py:628(value)
+       10    0.000    0.000    0.000    0.000 {method 'join' of 'str' objects}
+       20    0.000    0.000    0.000    0.000 {built-in method time.time}
+       20    0.000    0.000    0.000    0.000 {built-in method builtins.hasattr}
+       50    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+       50    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\src\card.py:28(value)
+       20    0.000    0.000    0.000    0.000 {built-in method builtins.issubclass}
+       30    0.000    0.000    0.000    0.000 {method 'items' of 'dict' objects}
+       20    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\fromnumeric.py:3149(_mean_dispatcher)
+       30    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\fromnumeric.py:2040(_sum_dispatcher)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+
+remove cards_from_hands impact
+         4083078 function calls in 5.217 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+       10    0.721    0.072    5.216    0.522 main.py:118(simulate_deuce_to_seven)
+  1037940    2.461    0.000    2.461    0.000 main.py:50(cards_from_hand)
+   100000    0.211    0.000    1.839    0.000 main.py:75(rank_hands)
+    72960    0.232    0.000    1.478    0.000 main.py:60(is_flush)
+   100000    0.694    0.000    1.067    0.000 C:\github\jagermeister\273\src\deck.py:10(cardPeek)
+   100000    0.086    0.000    0.240    0.000 C:\Users\Jagermeister\AppData\Local\Programs\Python\Python37-32\lib\random.py:174(randrange)
+   364800    0.140    0.000    0.198    0.000 main.py:61(<lambda>)
+   100000    0.105    0.000    0.154    0.000 C:\Users\Jagermeister\AppData\Local\Programs\Python\Python37-32\lib\random.py:224(_randbelow)
+    72950    0.100    0.000    0.140    0.000 main.py:67(is_values_straight)
+   172970    0.094    0.000    0.094    0.000 {built-in method builtins.sorted}
+   500000    0.066    0.000    0.066    0.000 main.py:139(<lambda>)
+   200000    0.060    0.000    0.060    0.000 {built-in method builtins.bin}
+   364800    0.057    0.000    0.057    0.000 C:\github\jagermeister\273\src\card.py:24(color)
+   100000    0.055    0.000    0.055    0.000 {method 'rstrip' of 'str' objects}
+   445930    0.044    0.000    0.044    0.000 {built-in method builtins.len}
+   100050    0.037    0.000    0.037    0.000 C:\github\jagermeister\273\src\card.py:16(add)
+   149347    0.036    0.000    0.036    0.000 {method 'getrandbits' of '_random.Random' objects}
+   100000    0.013    0.000    0.013    0.000 {method 'bit_length' of 'int' objects}
+       20    0.003    0.000    0.003    0.000 {built-in method builtins.print}
+       50    0.000    0.000    0.002    0.000 {built-in method numpy.core._multiarray_umath.implement_array_function}
+       20    0.000    0.000    0.001    0.000 <__array_function__ internals>:2(mean)
+       20    0.000    0.000    0.001    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\fromnumeric.py:3153(mean)
+       20    0.000    0.000    0.001    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\_methods.py:134(_mean)
+       50    0.001    0.000    0.001    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+       30    0.000    0.000    0.001    0.000 <__array_function__ internals>:2(sum)
+       30    0.000    0.000    0.001    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\fromnumeric.py:2045(sum)
+       30    0.000    0.000    0.000    0.000 {built-in method builtins.round}
+       30    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\fromnumeric.py:73(_wrapreduction)
+       10    0.000    0.000    0.000    0.000 main.py:63(is_straight)
+       20    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\_asarray.py:88(asanyarray)
+       10    0.000    0.000    0.000    0.000 main.py:71(unique_value_count)
+       20    0.000    0.000    0.000    0.000 {built-in method numpy.array}
+       60    0.000    0.000    0.000    0.000 main.py:29(cards_value_minimal)
+       20    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\_methods.py:50(_count_reduce_items)
+      100    0.000    0.000    0.000    0.000 C:\Users\Jagermeister\AppData\Local\Programs\Python\Python37-32\lib\types.py:164(__get__)
+       50    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\src\card.py:20(remove)
+       50    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\src\card.py:32(to_index)
+       70    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
+       30    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\fromnumeric.py:74(<dictcomp>)
+       50    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\src\card.py:9(bit_mask)
+       30    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
+      100    0.000    0.000    0.000    0.000 C:\Users\Jagermeister\AppData\Local\Programs\Python\Python37-32\lib\enum.py:628(value)
+       10    0.000    0.000    0.000    0.000 {method 'join' of 'str' objects}
+       20    0.000    0.000    0.000    0.000 {built-in method builtins.hasattr}
+       20    0.000    0.000    0.000    0.000 {built-in method time.time}
+       50    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+       50    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\src\card.py:28(value)
+       50    0.000    0.000    0.000    0.000 main.py:72(<lambda>)
+       50    0.000    0.000    0.000    0.000 main.py:64(<lambda>)
+       30    0.000    0.000    0.000    0.000 {method 'items' of 'dict' objects}
+       20    0.000    0.000    0.000    0.000 {built-in method builtins.issubclass}
+       50    0.000    0.000    0.000    0.000 main.py:129(<lambda>)
+       20    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\fromnumeric.py:3149(_mean_dispatcher)
+       30    0.000    0.000    0.000    0.000 C:\github\jagermeister\273\env\lib\site-packages\numpy\core\fromnumeric.py:2040(_sum_dispatcher)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
