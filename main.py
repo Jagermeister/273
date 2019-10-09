@@ -119,7 +119,7 @@ def simulate_deuce_to_seven(t1, p2, cards):
                 c = Deck.cardPeek(cards, 52 - 9 - i)
                 t2 = Card.add(t2, c)
 
-            t2_values_sorted = sorted(list(set(map(lambda i: i%13, cards_from_hand(t2)))), reverse=True)
+            t2_values_sorted = sorted(list(map(lambda i: i%13, cards_from_hand(t2))), reverse=True)
             result = rank_hands(t2, t2_values_sorted, t1_unique_count, is_t1_flush, is_t1_straight, t1_values_sorted)
             score = tuple(map(add, score, result))
 
@@ -142,15 +142,15 @@ cards, p2 = cards_from_deck(cards, [
     (Value.TWO, Suit.DIAMONDS),
     (Value.THREE, Suit.SPADES),
     (Value.FOUR, Suit.DIAMONDS),
-    (Value.SEVEN, Suit.SPADES)])
+    (Value.EIGHT, Suit.SPADES)])
 p1_suits = [Suit.CLUBS, Suit.HEARTS, Suit.HEARTS, Suit.HEARTS, Suit.HEARTS]
 
 #import cProfile, pstats, io
 #pr = cProfile.Profile()
 #pr.enable()
 
-
-for hand in all_combos[:246]:
+#for hand in all_combos[:246]:
+for hand in [all_combos[30]]:
     p1 = 0
     sim_deck = cards
     for s, v in zip(p1_suits, hand):
