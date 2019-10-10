@@ -142,15 +142,14 @@ cards, p2 = cards_from_deck(cards, [
     (Value.TWO, Suit.DIAMONDS),
     (Value.THREE, Suit.SPADES),
     (Value.FOUR, Suit.DIAMONDS),
-    (Value.EIGHT, Suit.SPADES)])
+    (Value.JACK, Suit.SPADES)])
 p1_suits = [Suit.CLUBS, Suit.HEARTS, Suit.HEARTS, Suit.HEARTS, Suit.HEARTS]
 
 #import cProfile, pstats, io
 #pr = cProfile.Profile()
 #pr.enable()
 
-#for hand in all_combos[:246]:
-for hand in [all_combos[30]]:
+for hand in all_combos[:246]:
     p1 = 0
     sim_deck = cards
     for s, v in zip(p1_suits, hand):
