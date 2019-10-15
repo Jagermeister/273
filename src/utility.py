@@ -1,7 +1,7 @@
 """ Common utilities interacting with base classes """
 
 from src.card import Card
-
+from src.build import generate_cards_from_hands
 
 def cards_from_deck(deck, cards):
     hand = 0
@@ -12,7 +12,11 @@ def cards_from_deck(deck, cards):
 
     return deck, hand
 
+
+CARDS_FROM_HAND = generate_cards_from_hands()
 def card_index_from_hand(hand):
+    return CARDS_FROM_HAND[hand]
+
     index = 0
     while hand:
         if hand & 0b1:

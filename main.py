@@ -89,9 +89,15 @@ def simulate_deuce_to_seven(t1, p2, cards):
         score = (0, 0, 0)
         for _ in range(runs):
             t2 = p2
-            for i in range(cards_to_pull):
-                c = Deck.cardPeek(cards, 52 - 9 - i)
-                t2 = Card.add(t2, c)
+            cards_added = set()
+            cards_added_count = 0
+            #for i in range(cards_to_pull):
+            while cards_added_count < cards_to_pull:
+                c = Deck.cardPeek(cards, 52 - 9 - cards_added_count)
+                if c not in cards_added:
+                    t2 = Card.add(t2, c)
+                    cards_added.add(c)
+                    cards_added_count += 1
 
             t2_values_sorted = sorted(list(map(lambda i: i%13, card_index_from_hand(t2))), reverse=True)
             result = rank_hands(t2, t2_values_sorted, t1_unique_count, is_t1_flush, is_t1_straight, t1_values_sorted)
@@ -118,11 +124,11 @@ cards, p2 = cards_from_deck(cards, [
     (Value.TEN, Suit.DIAMONDS)])
 p1_suits = [Suit.CLUBS] + [Suit.HEARTS] * 4
 
-#import cProfile, pstats, io
-#pr = cProfile.Profile()
-#pr.enable()
+import cProfile, pstats, io
+pr = cProfile.Profile()
+pr.enable()
 
-for hand in all_combos[:246]:
+for hand in all_combos[:20]:#246]:
     p1 = 0
     sim_deck = cards
     for s, v in zip(p1_suits, hand):
@@ -132,9 +138,9 @@ for hand in all_combos[:246]:
 
     simulate_deuce_to_seven(p1, p2, sim_deck)
 
-#pr.disable()
-#s = io.StringIO()
-#sortby = 'cumulative'
-#ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
-#ps.print_stats()
-#print(s.getvalue())
+pr.disable()
+s = io.StringIO()
+sortby = 'cumulative'
+ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
+ps.print_stats()
+print(s.getvalue())

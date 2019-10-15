@@ -1,0 +1,132 @@
+Single draw, 2 cards for hands up to [:20]
+
+         29894786 function calls in 39.521 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+       20    5.401    0.270   39.520    1.976 /home/m20ussfref/github/jagermeister/273/main.py:75(simulate_deuce_to_seven)
+  1200000    8.597    0.000   13.999    0.000 /home/m20ussfref/github/jagermeister/273/src/deck.py:10(cardPeek)
+  5790016   12.914    0.000   12.914    0.000 /home/m20ussfref/github/jagermeister/273/src/utility.py:15(card_index_from_hand)
+   600000    1.614    0.000   10.351    0.000 /home/m20ussfref/github/jagermeister/273/main.py:49(rank_hands)
+   367256    1.473    0.000    7.759    0.000 /home/m20ussfref/github/jagermeister/273/src/utility.py:25(is_flush)
+  1200000    1.274    0.000    3.692    0.000 /home/m20ussfref/anaconda3/lib/python3.7/random.py:174(randrange)
+  1200000    1.666    0.000    2.418    0.000 /home/m20ussfref/anaconda3/lib/python3.7/random.py:224(_randbelow)
+  1836280    0.879    0.000    1.349    0.000 /home/m20ussfref/github/jagermeister/273/src/utility.py:26(<lambda>)
+   367236    0.641    0.000    0.879    0.000 /home/m20ussfref/github/jagermeister/273/src/utility.py:32(is_values_straight)
+  2400000    0.751    0.000    0.751    0.000 {built-in method builtins.bin}
+  2986120    0.704    0.000    0.704    0.000 /home/m20ussfref/github/jagermeister/273/main.py:96(<lambda>)
+   967276    0.667    0.000    0.667    0.000 {built-in method builtins.sorted}
+  1200000    0.592    0.000    0.592    0.000 {method 'rstrip' of 'str' objects}
+  3734532    0.589    0.000    0.589    0.000 {built-in method builtins.len}
+  1806669    0.530    0.000    0.530    0.000 {method 'getrandbits' of '_random.Random' objects}
+  1200100    0.516    0.000    0.516    0.000 /home/m20ussfref/github/jagermeister/273/src/card.py:16(add)
+  1836280    0.470    0.000    0.470    0.000 /home/m20ussfref/github/jagermeister/273/src/card.py:24(color)
+  1200000    0.222    0.000    0.222    0.000 {method 'bit_length' of 'int' objects}
+       20    0.010    0.000    0.010    0.000 {built-in method builtins.print}
+      100    0.000    0.000    0.007    0.000 {built-in method numpy.core._multiarray_umath.implement_array_function}
+       20    0.000    0.000    0.004    0.000 <__array_function__ internals>:2(mean)
+       20    0.001    0.000    0.003    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/fromnumeric.py:3153(mean)
+       20    0.001    0.000    0.003    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/_methods.py:134(_mean)
+       20    0.000    0.000    0.002    0.000 <__array_function__ internals>:2(std)
+      120    0.002    0.000    0.002    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+       20    0.000    0.000    0.002    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/fromnumeric.py:3265(std)
+       20    0.000    0.000    0.002    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/_methods.py:215(_std)
+       20    0.001    0.000    0.002    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/_methods.py:167(_var)
+       60    0.000    0.000    0.002    0.000 <__array_function__ internals>:2(sum)
+       60    0.000    0.000    0.001    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/fromnumeric.py:2045(sum)
+       60    0.000    0.000    0.001    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/fromnumeric.py:73(_wrapreduction)
+       60    0.001    0.000    0.001    0.000 {built-in method builtins.round}
+       60    0.000    0.000    0.001    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/_asarray.py:88(asanyarray)
+       60    0.001    0.000    0.001    0.000 {built-in method numpy.array}
+      120    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/main.py:28(cards_value_minimal)
+       20    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/src/utility.py:28(is_straight)
+      200    0.000    0.000    0.000    0.000 /home/m20ussfref/anaconda3/lib/python3.7/types.py:164(__get__)
+       20    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/src/utility.py:36(unique_value_count)
+       40    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/_methods.py:50(_count_reduce_items)
+      300    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+      100    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/src/card.py:20(remove)
+      180    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
+       60    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/fromnumeric.py:74(<dictcomp>)
+      200    0.000    0.000    0.000    0.000 /home/m20ussfref/anaconda3/lib/python3.7/enum.py:628(value)
+      100    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/src/card.py:9(bit_mask)
+       60    0.000    0.000    0.000    0.000 {built-in method builtins.hasattr}
+       20    0.000    0.000    0.000    0.000 {method 'join' of 'str' objects}
+      100    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/src/card.py:32(to_index)
+       60    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
+       60    0.000    0.000    0.000    0.000 {built-in method builtins.issubclass}
+      100    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/src/card.py:28(value)
+      100    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/src/utility.py:29(<lambda>)
+       40    0.000    0.000    0.000    0.000 {built-in method time.time}
+       20    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/fromnumeric.py:3149(_mean_dispatcher)
+       20    0.000    0.000    0.000    0.000 {built-in method builtins.max}
+      100    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/src/utility.py:37(<lambda>)
+      100    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/main.py:86(<lambda>)
+       60    0.000    0.000    0.000    0.000 {method 'items' of 'dict' objects}
+       60    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/fromnumeric.py:2040(_sum_dispatcher)
+       20    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/fromnumeric.py:3260(_std_dispatcher)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+
+Generate card index from hand into look up
+
+        21160658 function calls in 25.200 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+       20    5.061    0.253   25.200    1.260 /home/m20ussfref/github/jagermeister/273/main.py:75(simulate_deuce_to_seven)
+  1214232    8.744    0.000   14.279    0.000 /home/m20ussfref/github/jagermeister/273/src/deck.py:10(cardPeek)
+   600000    1.667    0.000    4.157    0.000 /home/m20ussfref/github/jagermeister/273/main.py:49(rank_hands)
+  1214232    1.351    0.000    3.756    0.000 /home/m20ussfref/anaconda3/lib/python3.7/random.py:174(randrange)
+  1214232    1.664    0.000    2.405    0.000 /home/m20ussfref/anaconda3/lib/python3.7/random.py:224(_randbelow)
+   600020    1.180    0.000    1.462    0.000 /home/m20ussfref/github/jagermeister/273/src/utility.py:29(is_flush)
+   600000    0.605    0.000    0.903    0.000 /home/m20ussfref/github/jagermeister/273/src/utility.py:36(is_values_straight)
+  1200080    0.849    0.000    0.849    0.000 /home/m20ussfref/github/jagermeister/273/src/utility.py:17(card_index_from_hand)
+  2428464    0.769    0.000    0.769    0.000 {built-in method builtins.bin}
+  4228524    0.665    0.000    0.665    0.000 {built-in method builtins.len}
+  1214232    0.640    0.000    0.640    0.000 {method 'rstrip' of 'str' objects}
+  1829549    0.524    0.000    0.524    0.000 {method 'getrandbits' of '_random.Random' objects}
+  1200100    0.514    0.000    0.514    0.000 /home/m20ussfref/github/jagermeister/273/src/card.py:16(add)
+  1200040    0.510    0.000    0.510    0.000 {built-in method builtins.sorted}
+  1200000    0.223    0.000    0.223    0.000 {method 'add' of 'set' objects}
+  1214232    0.217    0.000    0.217    0.000 {method 'bit_length' of 'int' objects}
+       20    0.008    0.000    0.008    0.000 {built-in method builtins.print}
+      100    0.000    0.000    0.007    0.000 {built-in method numpy.core._multiarray_umath.implement_array_function}
+       20    0.000    0.000    0.003    0.000 <__array_function__ internals>:2(mean)
+       20    0.000    0.000    0.003    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/fromnumeric.py:3153(mean)
+       20    0.001    0.000    0.003    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/_methods.py:134(_mean)
+      120    0.002    0.000    0.002    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+       20    0.000    0.000    0.002    0.000 <__array_function__ internals>:2(std)
+       20    0.000    0.000    0.002    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/fromnumeric.py:3265(std)
+       20    0.000    0.000    0.002    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/_methods.py:215(_std)
+       20    0.001    0.000    0.002    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/_methods.py:167(_var)
+       60    0.000    0.000    0.002    0.000 <__array_function__ internals>:2(sum)
+       60    0.000    0.000    0.001    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/fromnumeric.py:2045(sum)
+       60    0.000    0.000    0.001    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/fromnumeric.py:73(_wrapreduction)
+       60    0.001    0.000    0.001    0.000 {built-in method builtins.round}
+       60    0.000    0.000    0.001    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/_asarray.py:88(asanyarray)
+       60    0.001    0.000    0.001    0.000 {built-in method numpy.array}
+       20    0.000    0.000    0.001    0.000 /home/m20ussfref/github/jagermeister/273/src/utility.py:32(is_straight)
+      120    0.001    0.000    0.001    0.000 /home/m20ussfref/github/jagermeister/273/main.py:28(cards_value_minimal)
+      200    0.000    0.000    0.000    0.000 /home/m20ussfref/anaconda3/lib/python3.7/types.py:164(__get__)
+       40    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/_methods.py:50(_count_reduce_items)
+      300    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+      100    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/src/card.py:20(remove)
+      180    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
+      200    0.000    0.000    0.000    0.000 /home/m20ussfref/anaconda3/lib/python3.7/enum.py:628(value)
+       20    0.000    0.000    0.000    0.000 {method 'join' of 'str' objects}
+       60    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/fromnumeric.py:74(<dictcomp>)
+      100    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/src/card.py:9(bit_mask)
+       60    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
+      100    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/src/card.py:28(value)
+      100    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/src/card.py:32(to_index)
+       20    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/src/utility.py:40(unique_value_count)
+       60    0.000    0.000    0.000    0.000 {built-in method builtins.hasattr}
+       60    0.000    0.000    0.000    0.000 {built-in method builtins.issubclass}
+       40    0.000    0.000    0.000    0.000 {built-in method time.time}
+       20    0.000    0.000    0.000    0.000 {built-in method builtins.max}
+       60    0.000    0.000    0.000    0.000 {method 'items' of 'dict' objects}
+       60    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/fromnumeric.py:2040(_sum_dispatcher)
+       20    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/fromnumeric.py:3149(_mean_dispatcher)
+       20    0.000    0.000    0.000    0.000 /home/m20ussfref/github/jagermeister/273/env/lib/python3.7/site-packages/numpy/core/fromnumeric.py:3260(_std_dispatcher)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
