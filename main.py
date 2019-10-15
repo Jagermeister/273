@@ -5,18 +5,17 @@ from time import time
 
 import numpy as np
 
-from src.deck import Deck
 from src.card import Card, Suit, Value
+from src.deck import Deck
+from src.utility import (
+    card_index_from_hand,
+    cards_from_deck,
+    is_flush,
+    is_straight,
+    is_values_straight,
+    unique_value_count
+)
 
-
-def cards_from_deck(deck, cards):
-    hand = 0
-    for c, s in cards:
-        card = Card.to_index((s.value, c.value))
-        hand = Card.add(hand, card)
-        deck = Card.remove(deck, card)
-
-    return deck, hand
 
 def cards_display(hand):
     index = 0
@@ -47,31 +46,6 @@ def cards_value_minimal(hand):
         index += 1
         hand = hand >> 1
 
-def cards_from_hand(hand):
-    index = 0
-    while hand:
-        if hand & 0b1:
-            yield index
-
-        index += 1
-        hand = hand >> 1
-
-
-def is_flush(h):
-    return len(set(map(lambda i: Card.color(i), cards_from_hand(h)))) == 1
-
-def is_straight(h):
-    values = sorted(list(map(lambda i: i%13, cards_from_hand(h))))
-    return len(set(values)) == 5 and values[-1] - values[0] == 4
-
-def is_values_straight(vs):
-    values = sorted(vs)
-    return len(set(values)) == 5 and values[-1] - values[0] == 4
-
-def unique_value_count(h):
-    return len(set(map(lambda i: i%13, cards_from_hand(h))))
-
-
 def rank_hands(h2, h2_values_sorted, h1_unique_count, is_h1_flush, is_h1_straight, t1_values_sorted):
     h1c = h1_unique_count # unique_value_count(h1)
     h2c = len(set(h2_values_sorted)) # unique_value_count(h2)
@@ -88,8 +62,8 @@ def rank_hands(h2, h2_values_sorted, h1_unique_count, is_h1_flush, is_h1_straigh
     if h1s != h2s:
         return (1, 0, 0) if h1s else (0, 1, 0)
 
-    h1v = t1_values_sorted # sorted(list(set(map(lambda i: i%13, cards_from_hand(h1)))), reverse=True)
-    h2v = h2_values_sorted # sorted(list(set(map(lambda i: i%13, cards_from_hand(h2)))), reverse=True)
+    h1v = t1_values_sorted # sorted(list(set(map(lambda i: i%13, card_index_from_hand(h1)))), reverse=True)
+    h2v = h2_values_sorted # sorted(list(set(map(lambda i: i%13, card_index_from_hand(h2)))), reverse=True)
 
     for a, b in zip(h1v, h2v):
         if a != b:
@@ -104,12 +78,12 @@ def simulate_deuce_to_seven(t1, p2, cards):
 
     wallclock = time()
     scores = []
-    cards_to_pull = 1
+    cards_to_pull = 2
 
     is_t1_flush = is_flush(t1)
     is_t1_straight = is_straight(t1)
     t1_unique_count = unique_value_count(t1)
-    t1_values_sorted = sorted(list(set(map(lambda i: i%13, cards_from_hand(t1)))), reverse=True)
+    t1_values_sorted = sorted(list(set(map(lambda i: i%13, card_index_from_hand(t1)))), reverse=True)
 
     for _ in range(trials):
         score = (0, 0, 0)
@@ -119,7 +93,7 @@ def simulate_deuce_to_seven(t1, p2, cards):
                 c = Deck.cardPeek(cards, 52 - 9 - i)
                 t2 = Card.add(t2, c)
 
-            t2_values_sorted = sorted(list(map(lambda i: i%13, cards_from_hand(t2))), reverse=True)
+            t2_values_sorted = sorted(list(map(lambda i: i%13, card_index_from_hand(t2))), reverse=True)
             result = rank_hands(t2, t2_values_sorted, t1_unique_count, is_t1_flush, is_t1_straight, t1_values_sorted)
             score = tuple(map(add, score, result))
 
@@ -141,9 +115,8 @@ cards = Deck.create(52)
 cards, p2 = cards_from_deck(cards, [
     (Value.TWO, Suit.DIAMONDS),
     (Value.THREE, Suit.SPADES),
-    (Value.FOUR, Suit.DIAMONDS),
-    (Value.JACK, Suit.SPADES)])
-p1_suits = [Suit.CLUBS, Suit.HEARTS, Suit.HEARTS, Suit.HEARTS, Suit.HEARTS]
+    (Value.TEN, Suit.DIAMONDS)])
+p1_suits = [Suit.CLUBS] + [Suit.HEARTS] * 4
 
 #import cProfile, pstats, io
 #pr = cProfile.Profile()
