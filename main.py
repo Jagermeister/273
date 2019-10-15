@@ -1,12 +1,14 @@
 ''' Explore 2-7 Triple Draw Statistics '''
 
 from operator import add
+from random import choice
 from time import time
 
 import numpy as np
 
 from src.card import Card, Suit, Value
 from src.deck import Deck
+from src.build import generate_cards_from_hands
 from src.utility import (
     card_index_from_hand,
     cards_from_deck,
@@ -62,8 +64,8 @@ def rank_hands(h2, h2_values_sorted, h1_unique_count, is_h1_flush, is_h1_straigh
     if h1s != h2s:
         return (1, 0, 0) if h1s else (0, 1, 0)
 
-    h1v = t1_values_sorted # sorted(list(set(map(lambda i: i%13, card_index_from_hand(h1)))), reverse=True)
-    h2v = h2_values_sorted # sorted(list(set(map(lambda i: i%13, card_index_from_hand(h2)))), reverse=True)
+    h1v = t1_values_sorted
+    h2v = h2_values_sorted
 
     for a, b in zip(h1v, h2v):
         if a != b:
@@ -83,8 +85,9 @@ def simulate_deuce_to_seven(t1, p2, cards):
     is_t1_flush = is_flush(t1)
     is_t1_straight = is_straight(t1)
     t1_unique_count = unique_value_count(t1)
-    t1_values_sorted = sorted(list(set(map(lambda i: i%13, card_index_from_hand(t1)))), reverse=True)
+    t1_values_sorted = sorted(list(set(map(lambda i: i%13, CARDS_FROM_HAND[t1]))), reverse=True)
 
+    deck = list(card_index_from_hand(cards))
     for _ in range(trials):
         score = (0, 0, 0)
         for _ in range(runs):
@@ -93,13 +96,14 @@ def simulate_deuce_to_seven(t1, p2, cards):
             cards_added_count = 0
             #for i in range(cards_to_pull):
             while cards_added_count < cards_to_pull:
-                c = Deck.cardPeek(cards, 52 - 9 - cards_added_count)
+                c = choice(deck)
+                #c = Deck.cardPeek(cards, 52 - 9 - cards_added_count)
                 if c not in cards_added:
                     t2 = Card.add(t2, c)
                     cards_added.add(c)
                     cards_added_count += 1
 
-            t2_values_sorted = sorted(list(map(lambda i: i%13, card_index_from_hand(t2))), reverse=True)
+            t2_values_sorted = sorted(list(map(lambda i: i%13, CARDS_FROM_HAND[t2])), reverse=True)
             result = rank_hands(t2, t2_values_sorted, t1_unique_count, is_t1_flush, is_t1_straight, t1_values_sorted)
             score = tuple(map(add, score, result))
 
@@ -123,6 +127,9 @@ cards, p2 = cards_from_deck(cards, [
     (Value.THREE, Suit.SPADES),
     (Value.TEN, Suit.DIAMONDS)])
 p1_suits = [Suit.CLUBS] + [Suit.HEARTS] * 4
+
+
+CARDS_FROM_HAND = generate_cards_from_hands()
 
 import cProfile, pstats, io
 pr = cProfile.Profile()
