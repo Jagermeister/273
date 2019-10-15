@@ -48,19 +48,19 @@ def cards_value_minimal(hand):
         index += 1
         hand = hand >> 1
 
-def rank_hands(h2, h2_values_sorted, h1_unique_count, is_h1_flush, is_h1_straight, t1_values_sorted):
+def rank_hands(h2, h2_values_sorted, is_t2_flush, is_t2_straight, h1_unique_count, is_h1_flush, is_h1_straight, t1_values_sorted):
     h1c = h1_unique_count # unique_value_count(h1)
     h2c = len(set(h2_values_sorted)) # unique_value_count(h2)
     if h1c != h2c:
         return (1, 0, 0) if h1c > h2c else (0, 1, 0)
 
     h1f = is_h1_flush # is_flush(h1)
-    h2f = is_flush(h2)
+    h2f = is_t2_flush # is_flush(h2)
     if h1f != h2f:
         return (1, 0, 0) if h1f else (0, 1, 0)
 
     h1s = is_h1_straight # is_straight(h1)
-    h2s = is_values_straight(h2_values_sorted) # is_straight(h2)
+    h2s = is_t2_straight # is_values_straight(h2_values_sorted) # is_straight(h2)
     if h1s != h2s:
         return (1, 0, 0) if h1s else (0, 1, 0)
 
@@ -82,10 +82,9 @@ def simulate_deuce_to_seven(t1, p2, cards):
     scores = []
     cards_to_pull = 2
 
-    is_t1_flush = is_flush(t1)
-    is_t1_straight = is_straight(t1)
     t1_unique_count = unique_value_count(t1)
-    t1_values_sorted = sorted(list(set(map(lambda i: i%13, CARDS_FROM_HAND[t1]))), reverse=True)
+    t1_values_sorted, is_t1_flush, is_t1_straight = CARDS_FROM_HAND[t1]
+    t1_values_sorted = sorted(list(set(map(lambda i: i%13, t1_values_sorted))), reverse=True)
 
     deck = list(card_index_from_hand(cards))
     for _ in range(trials):
@@ -103,8 +102,9 @@ def simulate_deuce_to_seven(t1, p2, cards):
                     cards_added.add(c)
                     cards_added_count += 1
 
-            t2_values_sorted = sorted(list(map(lambda i: i%13, CARDS_FROM_HAND[t2])), reverse=True)
-            result = rank_hands(t2, t2_values_sorted, t1_unique_count, is_t1_flush, is_t1_straight, t1_values_sorted)
+            t2_values_sorted, is_t2_flush, is_t2_straight = CARDS_FROM_HAND[t2]
+            t2_values_sorted = sorted(list(map(lambda i: i%13, t2_values_sorted)), reverse=True)
+            result = rank_hands(t2, t2_values_sorted, is_t2_flush, is_t2_straight, t1_unique_count, is_t1_flush, is_t1_straight, t1_values_sorted)
             score = tuple(map(add, score, result))
 
         scores.append(score)
@@ -128,14 +128,16 @@ cards, p2 = cards_from_deck(cards, [
     (Value.TEN, Suit.DIAMONDS)])
 p1_suits = [Suit.CLUBS] + [Suit.HEARTS] * 4
 
-
+wallclock = time()
+print('Caching hand values...')
 CARDS_FROM_HAND = generate_cards_from_hands()
+print(f'Cache completed {round(time() - wallclock, 2)}s')
 
 import cProfile, pstats, io
 pr = cProfile.Profile()
 pr.enable()
 
-for hand in all_combos[:5]:#246]:
+for hand in all_combos[:20]:#246]:
     p1 = 0
     sim_deck = cards
     for s, v in zip(p1_suits, hand):
