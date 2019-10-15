@@ -8,10 +8,10 @@ import numpy as np
 
 from src.card import Card, Suit, Value
 from src.deck import Deck
-from src.build import generate_cards_from_hands
 from src.utility import (
     card_index_from_hand,
     cards_from_deck,
+    generate_cards_from_hands,
     is_flush,
     is_straight,
     is_values_straight,
@@ -135,7 +135,7 @@ import cProfile, pstats, io
 pr = cProfile.Profile()
 pr.enable()
 
-for hand in all_combos[:20]:#246]:
+for hand in all_combos[:5]:#246]:
     p1 = 0
     sim_deck = cards
     for s, v in zip(p1_suits, hand):
