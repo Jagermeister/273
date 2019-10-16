@@ -1,17 +1,22 @@
 ''' Explore 2-7 Triple Draw Statistics '''
 
+import logging
 from operator import add
 from random import choice
-from time import time
+from timeit import default_timer
 
 import numpy as np
+import pandas as pd
 
 from src.card import Card, Suit, Value
 from src.deck import Deck
 from src.utility import (
     card_index_from_hand,
     cards_from_deck,
+    cards_value_minimal,
+    fetch_card_cache,
     generate_cards_from_hands,
+    fetch_hand_rankings,
     is_flush,
     is_straight,
     is_values_straight,
@@ -19,34 +24,10 @@ from src.utility import (
 )
 
 
-def cards_display(hand):
-    index = 0
-    while hand:
-        if hand & 0b1:
-            print(Value(Card.value(index)).name, Suit(Card.color(index)).name[0].lower(), end='; ')
-        index += 1
-        hand = hand >> 1
+logging.basicConfig(level=logging.INFO)
+LOGGER = logging.getLogger(__name__)
 
-def cards_value_minimal(hand):
-    index = 0
-    while hand:
-        if hand & 0b1:
-            v = Card.value(index)
-            if v < 8:
-                yield str(v + 2)
-            elif v == 8:
-                yield 'T'
-            elif v == 9:
-                yield 'J'
-            elif v == 10:
-                yield 'Q'
-            elif v == 11:
-                yield 'K'
-            elif v == 12:
-                yield 'A'
 
-        index += 1
-        hand = hand >> 1
 
 def rank_hands(h2, h2_values_sorted, is_t2_flush, is_t2_straight, h1_unique_count, is_h1_flush, is_h1_straight, t1_values_sorted):
     h1c = h1_unique_count # unique_value_count(h1)
@@ -74,17 +55,12 @@ def rank_hands(h2, h2_values_sorted, is_t2_flush, is_t2_straight, h1_unique_coun
     return (0, 0, 1)
 
 
-def simulate_deuce_to_seven(t1, p2, cards):
-    trials = 15
-    runs = 2000
-
-    wallclock = time()
+def simulate_deuce_to_seven(t1, p2, cards, trials, runs):
     scores = []
-    cards_to_pull = 2
+    cards_to_pull = 1
 
     t1_unique_count = unique_value_count(t1)
-    t1_values_sorted, is_t1_flush, is_t1_straight = CARDS_FROM_HAND[t1]
-    t1_values_sorted = sorted(list(set(map(lambda i: i%13, t1_values_sorted))), reverse=True)
+    _, is_t1_flush, is_t1_straight, t1_values_sorted = CARDS_FROM_HAND[t1]
 
     deck = list(card_index_from_hand(cards))
     for _ in range(trials):
@@ -102,54 +78,77 @@ def simulate_deuce_to_seven(t1, p2, cards):
                     cards_added.add(c)
                     cards_added_count += 1
 
-            t2_values_sorted, is_t2_flush, is_t2_straight = CARDS_FROM_HAND[t2]
-            t2_values_sorted = sorted(list(map(lambda i: i%13, t2_values_sorted)), reverse=True)
+            _, is_t2_flush, is_t2_straight, t2_values_sorted = CARDS_FROM_HAND[t2]
             result = rank_hands(t2, t2_values_sorted, is_t2_flush, is_t2_straight, t1_unique_count, is_t1_flush, is_t1_straight, t1_values_sorted)
             score = tuple(map(add, score, result))
 
         scores.append(score)
 
-    wins, loses, ties = zip(*scores)
-    print('-'.join(reversed(list(cards_value_minimal(t1)))), f'{round((runs-np.mean(loses))/runs*100, 2):.2f}% +/- {round((np.std(loses))/runs*100, 2):.2f}%', list(map(np.sum, (wins, loses, ties))), f'{round(time() - wallclock, 3)}s')
+    return zip(*scores)
 
-from itertools import combinations
 
-def is_value_enum_straight(values):
-    values = sorted([v.value for v in values])
-    return len(set(values)) == 5 and values [-1] - values[0] == 4
 
-all_combos = list(filter(lambda h: not is_value_enum_straight(h), list(combinations(list(Value), 5))))
-all_combos = sorted(all_combos, key=lambda cs: sorted([c.value for c in cs], reverse=True))
-
-cards = Deck.create(52)
-cards, p2 = cards_from_deck(cards, [
-    (Value.TWO, Suit.DIAMONDS),
-    (Value.THREE, Suit.SPADES),
-    (Value.TEN, Suit.DIAMONDS)])
+WALLCLOCK = default_timer()
 p1_suits = [Suit.CLUBS] + [Suit.HEARTS] * 4
 
-wallclock = time()
-print('Caching hand values...')
-CARDS_FROM_HAND = generate_cards_from_hands()
-print(f'Cache completed {round(time() - wallclock, 2)}s')
+LOGGER.info('Fetch Card Cache')
+CARDS_FROM_HAND = fetch_card_cache()
+LOGGER.info(f'Card Cache Ready, {round(default_timer() - WALLCLOCK, 2)}')
+WALLCLOCK = default_timer()
 
-import cProfile, pstats, io
-pr = cProfile.Profile()
-pr.enable()
+#import cProfile, pstats, io
+#pr = cProfile.Profile()
+#pr.enable()
 
-for hand in all_combos[:20]:#246]:
-    p1 = 0
-    sim_deck = cards
-    for s, v in zip(p1_suits, hand):
-        c = Card.to_index((s.value, v.value))
-        p1 = Card.add(p1, c)
-        sim_deck = Card.remove(sim_deck, c)
+TRIALS = 5
+RUNS = 500
+TOP_HANDS_COUNT = 246
+HAND_RANKINGS = fetch_hand_rankings()[:TOP_HANDS_COUNT]
 
-    simulate_deuce_to_seven(p1, p2, sim_deck)
+card_char = lambda c: str(c + 2) if c < 8 else { 8: 'T', 9: 'J', 10: 'Q',  11: 'K', 12: 'A' }[c]
+results = pd.DataFrame({'hands': ['-'.join(reversed([card_char(c.value) for c in v])) for v in HAND_RANKINGS]})
 
-pr.disable()
-s = io.StringIO()
-sortby = 'cumulative'
-ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
-ps.print_stats()
-print(s.getvalue())
+DRAWING_HANDS = [
+    [(Value.TWO, Suit.DIAMONDS), (Value.THREE, Suit.SPADES), (Value.FOUR, Suit.SPADES), (Value.SEVEN, Suit.SPADES)],
+    [(Value.TWO, Suit.DIAMONDS), (Value.THREE, Suit.SPADES), (Value.FOUR, Suit.SPADES), (Value.EIGHT, Suit.SPADES)],
+    [(Value.TWO, Suit.DIAMONDS), (Value.THREE, Suit.SPADES), (Value.FOUR, Suit.SPADES), (Value.NINE, Suit.SPADES)],
+    [(Value.TWO, Suit.DIAMONDS), (Value.THREE, Suit.SPADES), (Value.FOUR, Suit.SPADES), (Value.TEN, Suit.SPADES)],
+    [(Value.TWO, Suit.DIAMONDS), (Value.THREE, Suit.SPADES), (Value.FOUR, Suit.SPADES), (Value.JACK, Suit.SPADES)]]
+
+LOGGER.info(f'Simulating {len(DRAWING_HANDS)} hands drawing against the top {TOP_HANDS_COUNT} hands.')
+for drawing_cards in DRAWING_HANDS:
+
+    HAND_WALLCLOCK = default_timer()
+    cards = Deck.create(52)
+    cards, p2 = cards_from_deck(cards, drawing_cards)
+    hand_name = '-'.join(reversed(list(cards_value_minimal(p2))))
+
+    hand_results = []
+    for hand in HAND_RANKINGS:
+        p1 = 0
+        sim_deck = cards
+        for s, v in zip(p1_suits, hand):
+            c = Card.to_index((s.value, v.value))
+            p1 = Card.add(p1, c)
+            sim_deck = Card.remove(sim_deck, c)
+
+        wins, loses, ties = simulate_deuce_to_seven(p1, p2, sim_deck, TRIALS, RUNS)
+        hand_results.append(round((RUNS-np.mean(loses))/RUNS*100, 2))
+        #print(
+        #    '-'.join(reversed(list(cards_value_minimal(p1)))),
+        #    f'{round((RUNS-np.mean(loses))/RUNS*100, 2):.2f}% +/- {round((np.std(loses))/RUNS*100, 2):.2f}%',
+        #    list(map(np.sum, (wins, loses, ties))),
+        #    f'{round(time() - wallclock, 3)}s')
+
+    results[hand_name] = hand_results
+    LOGGER.info(f'{hand_name}, {round(default_timer() - HAND_WALLCLOCK, 2)}')
+
+LOGGER.info(f'Simulation completed, {round(default_timer() - WALLCLOCK, 2)}')
+results.to_csv('docs/results/frame.csv')
+
+#pr.disable()
+#s = io.StringIO()
+#sortby = 'cumulative'
+#ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
+#ps.print_stats()
+#print(s.getvalue())
