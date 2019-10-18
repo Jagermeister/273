@@ -1,5 +1,6 @@
 """ Common utilities interacting with base classes """
 
+import logging
 import os
 import json
 
@@ -7,6 +8,10 @@ from functools import reduce
 from itertools import combinations
 
 from src.card import Card, Value
+
+
+logging.basicConfig(level=logging.INFO)
+LOGGER = logging.getLogger(__name__)
 
 
 def cards_from_deck(deck, cards):
@@ -55,8 +60,8 @@ def generate_cards_from_hands():
     card_value_from_index = lambda i: i % 13
     for i, card_list in enumerate(generate_hands_from_deck(52, 5)):
         # (card_value, card_index)
-        #if i and i % 250000 == 0:
-        #    print(f'..cached {i} hands..')
+        if i and i % 250000 == 0:
+            LOGGER.info(f'..cached {i} hands..')
         cards, indexes = zip(*card_list)
         hand = reduce(bitwise_or, cards)
         cards_by_hand[hand] = (

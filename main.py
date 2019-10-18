@@ -115,7 +115,7 @@ DRAWING_HANDS = [
     [(Value.TWO, Suit.DIAMONDS), (Value.THREE, Suit.SPADES), (Value.FOUR, Suit.SPADES), (Value.TEN, Suit.SPADES)],
     [(Value.TWO, Suit.DIAMONDS), (Value.THREE, Suit.SPADES), (Value.FOUR, Suit.SPADES), (Value.JACK, Suit.SPADES)]]
 
-LOGGER.info(f'Simulating {len(DRAWING_HANDS)} hands drawing against the top {TOP_HANDS_COUNT} hands.')
+LOGGER.info(f'Simulating {len(DRAWING_HANDS)} hands drawing {TRIALS * RUNS} times against the top {TOP_HANDS_COUNT} hands.')
 for drawing_cards in DRAWING_HANDS:
 
     HAND_WALLCLOCK = default_timer()
