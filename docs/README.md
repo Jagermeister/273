@@ -1,10 +1,13 @@
 # 273: Deuce to Seven Triple Draw
 A variant of poker which the normal hand rankings are inverted. Exploring strategy, statistics, and game theory through simulation.
 
-- single draw simulations
 
 ## Deliverables
-Simulation-based results that explore the odds of drawing to certain hands based on how many rounds are left and how many opponents are available.
+Simulation-based results that explore the odds of drawing to certain hands based on how many rounds are left and how many opponents are available. Direct math based calculations on outs are available for many situations, but simulations allow for implementing opponent strategy models. We will look to answer questions like:
+- How should our play be when our opponent only continues with a 2 and will stay pat with a smooth 9 or better after 1 draw?
+- Is it better to snow 7-7-5-2-2 or draw 2? How often do you get there?
+- With most equity being realized when playing heads-up, are there hands strong enough to encourage more players?
+
 
 ### Single Draw to smooth 7, 8, 9, T, J
 <img src="./images/single/JT987_432.png" width="720px">
