@@ -54,6 +54,11 @@ def generate_hands_from_deck(deck_card_count, hand_card_count):
     deck = [(0b1 << i, i) for i in range(deck_card_count)]
     return combinations(deck, hand_card_count)
 
+# Provide hand ranking information:
+# Hand Id, Card Values
+# Jacks or better; Two Pair; 3 of a kind; Straight; Flush; Full House;
+# 4 5s throu Kinds; 4 2s, 3s, 4s; 4 Aces; 4 2s, 3s, 4s w/Ace,2,3,4;
+# 4 Aces with any 2,3,4; Straight Flush; Royal Flush;
 def generate_cards_from_hands():
     cards_by_hand = {}
     bitwise_or = lambda x, y: x ^ y
