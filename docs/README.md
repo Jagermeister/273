@@ -1,5 +1,5 @@
 # 273: Deuce to Seven Triple Draw
-A variant of poker which the normal hand rankings are inverted. Exploring strategy, statistics, and game theory through simulation.
+A variant of poker which the normal hand rankings are inverted. The best hand would be `7-5-4-3-2`. Exploring strategy, statistics, and game theory through simulation.
 
 
 ## Deliverables
